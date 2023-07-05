@@ -1,11 +1,10 @@
-import express, { Request, Response } from 'express'
+import express from 'express'
+import router from '@/routes'
 
 const app = express()
 
 app.use(express.json())
 
-app.get('/', (req: Request, res: Response) => {
-  return res.send('Hello World')
-})
+router(app)
 
 export { app }
