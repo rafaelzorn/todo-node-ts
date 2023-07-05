@@ -1,10 +1,13 @@
 import { Router, Request, Response } from 'express'
+import { ExpressAdapter } from '@/adapters/http/ExpressAdapter'
 import { getTodosFactory } from '@/modules/todos/getTodos/GetTodosFactory'
 
 const todosRoutes = Router()
 
-todosRoutes.post('/', (req: Request, res: Response) =>
-  getTodosFactory().handle(req, res)
-)
+todosRoutes.get('/todos', (req: Request, res: Response) => {
+  const expressAdapter = new ExpressAdapter(req, res)
+
+  getTodosFactory().handle(expressAdapter)
+})
 
 export { todosRoutes }

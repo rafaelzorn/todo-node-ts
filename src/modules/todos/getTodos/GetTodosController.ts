@@ -1,10 +1,10 @@
-import { Request, Response } from 'express'
+import { IHttpContext } from '@/adapters/http/IHttpContext'
 
 class GetTodosController {
   constructor() {}
 
-  async handle(request: Request, response: Response) {
-    return response.json('todos')
+  async handle(httpContext: IHttpContext) {
+    return httpContext.response({}, 200)
   }
 }
 
