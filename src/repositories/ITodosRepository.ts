@@ -1,3 +1,5 @@
+import { Todo } from '@/entities/Todo'
+
 export interface ITodosRepository {
-  get(): Array<string>
+  get(): Promise<Todo[]>
 }

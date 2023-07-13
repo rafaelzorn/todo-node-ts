@@ -6,7 +6,7 @@ class GetTodosController {
   constructor(private getTodosService: IGetTodosService) {}
 
   async handle(httpContext: IHttpContext) {
-    const todos = this.getTodosService.execute()
+    const todos = await this.getTodosService.execute()
 
     return httpContext.response({ todos }, httpStatus.OK)
   }

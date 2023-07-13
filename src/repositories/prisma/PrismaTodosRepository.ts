@@ -1,7 +1,9 @@
+import { prisma } from '@/database/client'
+import { Todo } from '@/entities/Todo'
 import { ITodosRepository } from '../ITodosRepository'
 
 export class PrismaTodosRepository implements ITodosRepository {
-  get(): Array<string> {
-    return ['todo-1', 'todo-2']
+  async get(): Promise<Todo[]> {
+    return await prisma.todo.findMany()
   }
 }

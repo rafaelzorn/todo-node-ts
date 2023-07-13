@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express'
 import { ExpressAdapter } from '@/adapters/http/ExpressAdapter'
-import { getTodosFactory } from '@/modules/todos/get-todos/get-todos-factory'
+import { getTodosFactory } from '@/modules/todos/get-todos/GetTodosFactory'
 
 const todosRoutes = Router()
 

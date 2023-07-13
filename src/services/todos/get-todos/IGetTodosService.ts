@@ -1,3 +1,5 @@
+import { Todo } from '@/entities/Todo'
+
 export interface IGetTodosService {
-  execute(): Array<string>
+  execute(): Promise<Todo[]>
 }
