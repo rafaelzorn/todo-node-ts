@@ -10,11 +10,12 @@ services:
       SERVER_PORT: ${SERVER_PORT}
     volumes:
       - .:/usr/app
+      - ./node_modules:/usr/app/node_modules
     depends_on:
       - mysql
     links:
       - mysql
-    command: npm run start:dev
+    command: sh -c "npx prisma migrate dev && npm run start:dev"
 
   mysql:
     image: mysql:5.7
