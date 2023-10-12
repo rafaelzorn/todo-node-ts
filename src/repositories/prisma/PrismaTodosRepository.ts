@@ -6,4 +6,6 @@ export class PrismaTodosRepository implements ITodosRepository {
   async get(): Promise<Todo[]> {
     return await prisma.todo.findMany()
   }
+
+  async create(todo: Todo): Promise<Todo> {}
 }
