@@ -1,31 +1,27 @@
 import { GetTodosService } from './GetTodosService'
 import { TodosRepositoryInMemory } from '@/repositories/in-memory/TodosRepositoryInMemory'
+import { ITodosRepository } from '@/repositories/ITodosRepository'
 import { Todo } from '@/entities/Todo'
 
 describe('Get Todos', () => {
-  let todosRepository: TodosRepositoryInMemory
+  let todosRepository: ITodosRepository
+  let getTodosService: GetTodosService
 
   beforeAll(() => {
     todosRepository = new TodosRepositoryInMemory()
-
-    const createTodo = (id: number, text: string) =>
-      todosRepository.create({ id, text })
-
-    createTodo(1, 'Texto de exemplo 1')
-    createTodo(2, 'Texto de exemplo 2')
+    getTodosService = new GetTodosService(todosRepository)
   })
 
   it('Should return all todos', async () => {
-    const getTodosService = new GetTodosService(todosRepository)
+    await todosRepository.create({ id: 1, text: 'Texto de exemplo 1' })
+    await todosRepository.create({ id: 2, text: 'Texto de exemplo 2' })
 
     const todos: Todo[] = await getTodosService.execute()
 
-    todos.forEach((todo: Todo, index: number) => {
-      expect(todo).toHaveProperty('id')
-      expect(todo).toHaveProperty('text')
+    expect(todos.length).toBe(2)
 
-      expect(todo.id).toBe(todos[index].id)
-      expect(todo.text).toBe(todos[index].text)
+    todos.forEach((todo: Todo, index: number) => {
+      expect(todo).toEqual({ id: todos[index].id, text: todos[index].text })
     })
   })
 })

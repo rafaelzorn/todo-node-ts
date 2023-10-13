@@ -5,33 +5,30 @@
 import { app } from '@/app'
 import request from 'supertest'
 import httpStatus from '@/constants/http-status'
+import { ITodosRepository } from '@/repositories/ITodosRepository'
 import { PrismaTodosRepository } from '@/repositories/prisma/PrismaTodosRepository'
 import { Todo } from '@/entities/Todo'
 
 describe('Get Todos Controller', () => {
-  beforeAll(() => {
-    const todosRepository = new PrismaTodosRepository()
+  let todosRepository: ITodosRepository
 
-    const createTodo = (id: number, text: string) =>
-      todosRepository.create({ id, text })
-
-    createTodo(1, 'Texto de exemplo 1')
-    createTodo(2, 'Texto de exemplo 2')
+  beforeAll(async () => {
+    todosRepository = new PrismaTodosRepository()
   })
 
   it('Should return all todos', async () => {
-    const response = await request(app).get('/todos')
+    await todosRepository.create({ id: 1, text: 'Texto de exemplo 1' })
+    await todosRepository.create({ id: 2, text: 'Texto de exemplo 2' })
 
-    expect(response.status).toBe(httpStatus.OK)
+    const response = await request(app).get('/todos')
 
     const todos = response.body.todos
 
-    todos.forEach((todo: Todo, index: number) => {
-      expect(todo).toHaveProperty('id')
-      expect(todo).toHaveProperty('text')
+    expect(response.status).toBe(httpStatus.OK)
+    expect(todos.length).toBe(2)
 
-      expect(todo.id).toBe(todos[index].id)
-      expect(todo.text).toBe(todos[index].text)
+    todos.forEach((todo: Todo, index: number) => {
+      expect(todo).toEqual({ id: todos[index].id, text: todos[index].text })
     })
   })
 })
