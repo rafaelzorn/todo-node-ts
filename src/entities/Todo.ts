@@ -1,14 +1,14 @@
 class Todo {
   id?: number
-  text: string
+  description: string
 
-  private constructor({ id, text }: Todo) {
+  private constructor({ id, description }: Todo) {
     this.id = id
-    this.text = text
+    this.description = description
   }
 
-  static create({ id, text }: Todo) {
-    return new Todo({ id, text })
+  static create({ id, description }: Todo) {
+    return new Todo({ id, description })
   }
 }
 

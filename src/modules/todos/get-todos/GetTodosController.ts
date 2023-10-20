@@ -8,7 +8,7 @@ class GetTodosController {
   async handle(httpContext: IHttpContext) {
     const todos = await this.getTodosService.execute()
 
-    return httpContext.response({ todos }, httpStatus.OK)
+    return httpContext.response({ data: todos, status: httpStatus.OK })
   }
 }
 

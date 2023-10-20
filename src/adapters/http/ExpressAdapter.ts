@@ -1,5 +1,5 @@
 import { Request as RequestExpress, Response as ResponseExpress } from 'express'
-import { IHttpContext, Request } from './IHttpContext'
+import { IHttpContext, Request, Response } from './IHttpContext'
 
 export class ExpressAdapter implements IHttpContext {
   constructor(
@@ -9,11 +9,11 @@ export class ExpressAdapter implements IHttpContext {
 
   request(): Request {
     return {
-      body: this.requestExpress.body.data,
+      body: this.requestExpress.body,
     }
   }
 
-  response(data: any, status: number): void {
+  response({ data, status }: Response): void {
     this.responseExpress.status(status).json(data)
   }
 }

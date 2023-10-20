@@ -2,9 +2,14 @@ interface Request {
   body: any
 }
 
-interface IHttpContext {
-  request(): Request
-  response(data: any, status: number): void
+interface Response {
+  data: any
+  status: number
 }
 
-export { Request, IHttpContext }
+interface IHttpContext {
+  request(): Request
+  response({ data, status }: Response): void
+}
+
+export { Request, Response, IHttpContext }

@@ -17,8 +17,11 @@ describe('Get Todos Controller', () => {
   })
 
   it('Should return all todos', async () => {
-    await todosRepository.create({ id: 1, text: 'Texto de exemplo 1' })
-    await todosRepository.create({ id: 2, text: 'Texto de exemplo 2' })
+    await todosRepository.create({
+      id: 1,
+      description: 'Texto de exemplo 1',
+    })
+    await todosRepository.create({ id: 2, description: 'Texto de exemplo 2' })
 
     const response = await request(app).get('/todos')
 
@@ -28,7 +31,10 @@ describe('Get Todos Controller', () => {
     expect(todos.length).toBe(2)
 
     todos.forEach((todo: Todo, index: number) => {
-      expect(todo).toEqual({ id: todos[index].id, text: todos[index].text })
+      expect(todo).toEqual({
+        id: todos[index].id,
+        description: todos[index].description,
+      })
     })
   })
 })
