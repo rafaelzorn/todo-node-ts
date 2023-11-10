@@ -13,8 +13,8 @@ describe('Get Todos', () => {
   })
 
   it('Should return all todos', async () => {
-    await todosRepository.create({ id: 1, description: 'Texto de exemplo 1' })
-    await todosRepository.create({ id: 2, description: 'Texto de exemplo 2' })
+    await todosRepository.create({ description: 'Sample Text 1' })
+    await todosRepository.create({ description: 'Sample Text 2' })
 
     const todos: Todo[] = await getTodosService.execute()
 

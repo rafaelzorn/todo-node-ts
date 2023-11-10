@@ -18,14 +18,13 @@ describe('Get Todos Controller', () => {
 
   it('Should return all todos', async () => {
     await todosRepository.create({
-      id: 1,
-      description: 'Texto de exemplo 1',
+      description: 'Sample Text 1',
     })
-    await todosRepository.create({ id: 2, description: 'Texto de exemplo 2' })
+    await todosRepository.create({ description: 'Sample Text 2' })
 
     const response = await request(app).get('/todos')
 
-    const todos = response.body.todos
+    const todos = response.body
 
     expect(response.status).toBe(httpStatus.OK)
     expect(todos.length).toBe(2)
