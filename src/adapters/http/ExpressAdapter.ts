@@ -10,6 +10,7 @@ export class ExpressAdapter implements IHttpContext {
   request(): Request {
     return {
       body: this.requestExpress.body,
+      params: this.requestExpress.params,
     }
   }
 

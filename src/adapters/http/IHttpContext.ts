@@ -1,5 +1,6 @@
 interface Request {
   body: any
+  params: any
 }
 
 interface Response {

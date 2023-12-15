@@ -5,15 +5,15 @@
 import { app } from '@/app'
 import request from 'supertest'
 import httpStatus from '@/constants/http-status'
-import { ITodosRepository } from '@/repositories/ITodosRepository'
-import { PrismaTodosRepository } from '@/repositories/prisma/PrismaTodosRepository'
+import { ITodoRepository } from '@/repositories/ITodoRepository'
+import { PrismaTodoRepository } from '@/repositories/prisma/PrismaTodoRepository'
 import { Todo } from '@/entities/Todo'
 
 describe('Get Todos Controller', () => {
-  let todosRepository: ITodosRepository
+  let todosRepository: ITodoRepository
 
   beforeAll(async () => {
-    todosRepository = new PrismaTodosRepository()
+    todosRepository = new PrismaTodoRepository()
   })
 
   it('Should return all todos', async () => {

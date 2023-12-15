@@ -1,14 +1,14 @@
 import { GetTodosService } from './GetTodosService'
-import { TodosRepositoryInMemory } from '@/repositories/in-memory/TodosRepositoryInMemory'
-import { ITodosRepository } from '@/repositories/ITodosRepository'
+import { TodoRepositoryInMemory } from '@/repositories/in-memory/TodoRepositoryInMemory'
+import { ITodoRepository } from '@/repositories/ITodoRepository'
 import { Todo } from '@/entities/Todo'
 
 describe('Get Todos', () => {
-  let todosRepository: ITodosRepository
+  let todosRepository: ITodoRepository
   let getTodosService: GetTodosService
 
   beforeAll(() => {
-    todosRepository = new TodosRepositoryInMemory()
+    todosRepository = new TodoRepositoryInMemory()
     getTodosService = new GetTodosService(todosRepository)
   })
 

@@ -1,19 +1,20 @@
 import { CreateTodoService } from './CreateTodoService'
-import { TodosRepositoryInMemory } from '@/repositories/in-memory/TodosRepositoryInMemory'
-import { ITodosRepository } from '@/repositories/ITodosRepository'
+import { Execute } from './ICreateTodoService'
+import { TodoRepositoryInMemory } from '@/repositories/in-memory/TodoRepositoryInMemory'
+import { ITodoRepository } from '@/repositories/ITodoRepository'
 import { Todo } from '@/entities/Todo'
 
 describe('Create Todo', () => {
-  let todosRepository: ITodosRepository
+  let todosRepository: ITodoRepository
   let createTodoService: CreateTodoService
 
   beforeAll(() => {
-    todosRepository = new TodosRepositoryInMemory()
+    todosRepository = new TodoRepositoryInMemory()
     createTodoService = new CreateTodoService(todosRepository)
   })
 
   it('Should be able to create a new todo', async () => {
-    const todoData: Todo = {
+    const todoData: Execute = {
       description: 'Sample Text',
     }
 
@@ -26,7 +27,7 @@ describe('Create Todo', () => {
   })
 
   it('should not be able to create a todo without description', async () => {
-    const todoData: Todo = {
+    const todoData: Execute = {
       description: '',
     }
 
