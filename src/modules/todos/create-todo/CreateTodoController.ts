@@ -10,7 +10,7 @@ class CreateTodoController {
 
     const todo = await this.createTodoService.execute({ description })
 
-    return httpContext.response({ data: todo, status: httpStatus.OK })
+    return httpContext.response({ data: todo, status: httpStatus.CREATED })
   }
 }
 

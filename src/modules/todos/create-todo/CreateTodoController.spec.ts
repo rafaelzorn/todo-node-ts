@@ -14,7 +14,7 @@ describe('Create Todo Controller', () => {
 
     const todo = response.body
 
-    expect(response.status).toBe(httpStatus.OK)
+    expect(response.status).toBe(httpStatus.CREATED)
     expect(todo).toEqual({
       id: todo.id,
       description: todo.description,

@@ -4,7 +4,7 @@ interface Request {
 }
 
 interface Response {
-  data: any
+  data?: any
   status: number
 }
 

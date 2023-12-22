@@ -37,4 +37,12 @@ export class PrismaTodoRepository implements ITodoRepository {
 
     return todo
   }
+
+  async delete(id: number): Promise<void> {
+    await prisma.todo.delete({
+      where: {
+        id,
+      },
+    })
+  }
 }
