@@ -3,8 +3,8 @@ import { UpdateTodoService } from '@/services/todos/update-todo/UpdateTodoServic
 import { UpdateTodoController } from './UpdateTodoController'
 
 export const updateTodoFactory = () => {
-  const todosRepository = new PrismaTodoRepository()
-  const updateTodoService = new UpdateTodoService(todosRepository)
+  const todoRepository = new PrismaTodoRepository()
+  const updateTodoService = new UpdateTodoService(todoRepository)
   const updateTodoController = new UpdateTodoController(updateTodoService)
 
   return updateTodoController

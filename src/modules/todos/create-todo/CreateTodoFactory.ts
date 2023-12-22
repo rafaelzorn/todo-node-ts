@@ -3,8 +3,8 @@ import { CreateTodoService } from '@/services/todos/create-todo/CreateTodoServic
 import { CreateTodoController } from './CreateTodoController'
 
 export const createTodoFactory = () => {
-  const todosRepository = new PrismaTodoRepository()
-  const createTodoService = new CreateTodoService(todosRepository)
+  const todoRepository = new PrismaTodoRepository()
+  const createTodoService = new CreateTodoService(todoRepository)
   const createTodoController = new CreateTodoController(createTodoService)
 
   return createTodoController

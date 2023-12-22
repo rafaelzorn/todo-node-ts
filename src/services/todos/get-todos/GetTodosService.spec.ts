@@ -4,17 +4,17 @@ import { ITodoRepository } from '@/repositories/ITodoRepository'
 import { Todo } from '@/entities/Todo'
 
 describe('Get Todos', () => {
-  let todosRepository: ITodoRepository
+  let todoRepository: ITodoRepository
   let getTodosService: GetTodosService
 
   beforeAll(() => {
-    todosRepository = new TodoRepositoryInMemory()
-    getTodosService = new GetTodosService(todosRepository)
+    todoRepository = new TodoRepositoryInMemory()
+    getTodosService = new GetTodosService(todoRepository)
   })
 
   it('Should return all todos', async () => {
-    await todosRepository.create({ description: 'Sample Text 1' })
-    await todosRepository.create({ description: 'Sample Text 2' })
+    await todoRepository.create({ description: 'Sample Text 1' })
+    await todoRepository.create({ description: 'Sample Text 2' })
 
     const todos: Todo[] = await getTodosService.execute()
 

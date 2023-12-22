@@ -4,7 +4,7 @@ import { ICreateTodoService, Execute } from './ICreateTodoService'
 import { UnprocessableEntityError } from '@/errors/UnprocessableEntityError'
 
 export class CreateTodoService implements ICreateTodoService {
-  constructor(private todosRepository: ITodoRepository) {}
+  constructor(private todoRepository: ITodoRepository) {}
 
   async execute({ description }: Execute): Promise<Todo> {
     if (!description) {
@@ -13,6 +13,6 @@ export class CreateTodoService implements ICreateTodoService {
 
     const todo = Todo.create({ description })
 
-    return await this.todosRepository.create(todo)
+    return await this.todoRepository.create(todo)
   }
 }

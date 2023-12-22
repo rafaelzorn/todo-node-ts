@@ -10,17 +10,18 @@ import { PrismaTodoRepository } from '@/repositories/prisma/PrismaTodoRepository
 import { Todo } from '@/entities/Todo'
 
 describe('Get Todos Controller', () => {
-  let todosRepository: ITodoRepository
+  let todoRepository: ITodoRepository
 
   beforeAll(async () => {
-    todosRepository = new PrismaTodoRepository()
+    todoRepository = new PrismaTodoRepository()
   })
 
   it('Should return all todos', async () => {
-    await todosRepository.create({
+    await todoRepository.create({
       description: 'Sample Text 1',
     })
-    await todosRepository.create({ description: 'Sample Text 2' })
+
+    await todoRepository.create({ description: 'Sample Text 2' })
 
     const response = await request(app).get('/todos')
 

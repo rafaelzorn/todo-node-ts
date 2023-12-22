@@ -4,19 +4,19 @@ import { NotFoundError } from '@/errors/NotFoundError'
 import { isNumber } from '@/utils/validate'
 
 export class DeleteTodoService implements IDeleteTodoService {
-  constructor(private todosRepository: ITodoRepository) {}
+  constructor(private todoRepository: ITodoRepository) {}
 
   async execute({ id }: Execute): Promise<void> {
     if (!isNumber({ value: id })) {
       throw new NotFoundError('Todo não encontrado.')
     }
 
-    const todo = await this.todosRepository.find(id)
+    const todo = await this.todoRepository.find(id)
 
     if (!todo) {
       throw new NotFoundError('Todo não encontrado.')
     }
 
-    await this.todosRepository.delete(id)
+    await this.todoRepository.delete(id)
   }
 }

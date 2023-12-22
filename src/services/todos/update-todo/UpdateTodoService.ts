@@ -6,7 +6,7 @@ import { NotFoundError } from '@/errors/NotFoundError'
 import { isNumber } from '@/utils/validate'
 
 export class UpdateTodoService implements IUpdateTodoService {
-  constructor(private todosRepository: ITodoRepository) {}
+  constructor(private todoRepository: ITodoRepository) {}
 
   async execute({ id, description }: Execute): Promise<Todo | null> {
     if (!isNumber({ value: id })) {
@@ -17,7 +17,7 @@ export class UpdateTodoService implements IUpdateTodoService {
       throw new UnprocessableEntityError('Campo descrição é obrigatório.')
     }
 
-    let todo = await this.todosRepository.find(id)
+    let todo = await this.todoRepository.find(id)
 
     if (!todo) {
       throw new NotFoundError('Todo não encontrado.')
@@ -25,6 +25,6 @@ export class UpdateTodoService implements IUpdateTodoService {
 
     todo = Todo.create({ description })
 
-    return await this.todosRepository.update(id, todo)
+    return await this.todoRepository.update(id, todo)
   }
 }

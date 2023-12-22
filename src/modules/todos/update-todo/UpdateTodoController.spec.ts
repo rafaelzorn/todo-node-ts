@@ -9,14 +9,14 @@ import { ITodoRepository } from '@/repositories/ITodoRepository'
 import request from 'supertest'
 
 describe('Update Todo Controller', () => {
-  let todosRepository: ITodoRepository
+  let todoRepository: ITodoRepository
 
   beforeAll(() => {
-    todosRepository = new PrismaTodoRepository()
+    todoRepository = new PrismaTodoRepository()
   })
 
   it('Should be able to update a todo', async () => {
-    todosRepository.create({ id: 1, description: 'Sample Text 1' })
+    await todoRepository.create({ id: 1, description: 'Sample Text 1' })
 
     const response = await request(app).put('/todos/1').send({
       description: 'Sample Text 2',
@@ -41,7 +41,7 @@ describe('Update Todo Controller', () => {
   })
 
   it('should not be able to update a todo without description', async () => {
-    todosRepository.create({ id: 1, description: 'Sample Text 1' })
+    await todoRepository.create({ id: 1, description: 'Sample Text 1' })
 
     const response = await request(app).put('/todos/1').send({
       description: '',

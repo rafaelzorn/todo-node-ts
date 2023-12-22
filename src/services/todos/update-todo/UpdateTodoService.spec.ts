@@ -5,16 +5,16 @@ import { ITodoRepository } from '@/repositories/ITodoRepository'
 import { Todo } from '@/entities/Todo'
 
 describe('Update Todo', () => {
-  let todosRepository: ITodoRepository
+  let todoRepository: ITodoRepository
   let updateTodoService: UpdateTodoService
 
   beforeAll(() => {
-    todosRepository = new TodoRepositoryInMemory()
-    updateTodoService = new UpdateTodoService(todosRepository)
+    todoRepository = new TodoRepositoryInMemory()
+    updateTodoService = new UpdateTodoService(todoRepository)
   })
 
   it('Should be able to update a todo', async () => {
-    await todosRepository.create({ id: 1, description: 'Sample Text 1' })
+    await todoRepository.create({ id: 1, description: 'Sample Text 1' })
 
     const todoData: Execute = {
       id: 1,
@@ -30,7 +30,7 @@ describe('Update Todo', () => {
   })
 
   it('should not be able to update a todo without description', async () => {
-    await todosRepository.create({ id: 1, description: 'Sample Text 1' })
+    await todoRepository.create({ id: 1, description: 'Sample Text 1' })
 
     const todoData: Execute = {
       id: 1,
@@ -43,7 +43,7 @@ describe('Update Todo', () => {
   })
 
   it('Should not be able to update a todo with a non-existent id', async () => {
-    await todosRepository.create({ id: 1, description: 'Sample Text 1' })
+    await todoRepository.create({ id: 1, description: 'Sample Text 1' })
 
     const todoData: Execute = {
       id: 2,

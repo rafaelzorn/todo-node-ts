@@ -5,12 +5,12 @@ import { ITodoRepository } from '@/repositories/ITodoRepository'
 import { Todo } from '@/entities/Todo'
 
 describe('Create Todo', () => {
-  let todosRepository: ITodoRepository
+  let todoRepository: ITodoRepository
   let createTodoService: CreateTodoService
 
   beforeAll(() => {
-    todosRepository = new TodoRepositoryInMemory()
-    createTodoService = new CreateTodoService(todosRepository)
+    todoRepository = new TodoRepositoryInMemory()
+    createTodoService = new CreateTodoService(todoRepository)
   })
 
   it('Should be able to create a new todo', async () => {

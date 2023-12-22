@@ -3,8 +3,8 @@ import { DeleteTodoService } from '@/services/todos/delete-todo/DeleteTodoServic
 import { DeleteTodoController } from './DeleteTodoController'
 
 export const deleteTodoFactory = () => {
-  const todosRepository = new PrismaTodoRepository()
-  const deleteTodoService = new DeleteTodoService(todosRepository)
+  const todoRepository = new PrismaTodoRepository()
+  const deleteTodoService = new DeleteTodoService(todoRepository)
   const deleteTodoController = new DeleteTodoController(deleteTodoService)
 
   return deleteTodoController
