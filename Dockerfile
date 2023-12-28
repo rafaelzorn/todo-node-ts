@@ -10,6 +10,6 @@ RUN npm install
 
 COPY . .
 
-EXPOSE $PORT
+EXPOSE $SERVER_PORT
 
 RUN npx prisma generate

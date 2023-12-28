@@ -16,6 +16,7 @@ services:
     links:
       - mysql
     command: sh -c "npx prisma migrate dev && npm run start:dev"
+    restart: on-failure
 
   mysql:
     image: mysql:5.7
