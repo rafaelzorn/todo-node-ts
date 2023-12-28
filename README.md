@@ -15,10 +15,12 @@ This repository contains a simple API developed in Node.js to manage a to-do lis
 Before starting, make sure you have Docker installed on your machine.
 
 ```bash
-# Clone this repository
 $ git clone git@github.com:rafaelzorn/todo-node-ts.git
+```
 
-# Create and start the containers
+Rename the `.env.example` to `.env`.
+
+```bash
 $ docker-compose up -d
 ```
 
