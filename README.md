@@ -21,7 +21,7 @@ $ git clone git@github.com:rafaelzorn/todo-node-ts.git
 Rename the `.env.example` to `.env`.
 
 ```bash
-$ docker-compose up -d
+$ docker compose up -d
 ```
 
 ## Endpoints
