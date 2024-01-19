@@ -25,5 +25,11 @@ jobs:
       - name: Build docker-composer
         run: docker-compose up -d
 
+      - name: Wait for node_modules
+        run: |
+          while [ ! -d "node_modules" ] || [ -z "$(ls -A node_modules)" ]; do
+            sleep 1
+          done
+
       - name: Run Tests
         run: docker exec api npm test
