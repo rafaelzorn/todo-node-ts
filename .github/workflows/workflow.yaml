@@ -1,0 +1,22 @@
+name: Continuos Integration
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  continuos-integration:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Creating network
+        run: docker network create "network"
+
+      - name: Build docker-composer
+        run: docker-compose up -d
+
+      - name: Check running container
+        run: docker ps -a
