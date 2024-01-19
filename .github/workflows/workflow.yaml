@@ -27,7 +27,7 @@ jobs:
 
       - name: Wait for node_modules
         run: |
-          while [ ! -d "node_modules" ] || [ -z "$(ls -A node_modules)" ]; do
+          until docker exec api [ -d "node_modules" ] && [ "$(ls -A node_modules)" ]; do
             sleep 1
           done
 
