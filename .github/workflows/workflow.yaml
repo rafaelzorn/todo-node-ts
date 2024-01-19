@@ -25,5 +25,5 @@ jobs:
       - name: Build docker-composer
         run: docker-compose up -d
 
-      - name: Check running container
-        run: docker ps -a
+      - name: Run Tests
+        run: docker exec api npm test
