@@ -5,13 +5,6 @@ on:
     branches:
       - main
 
-env:
-  SERVER_PORT: 3000
-  DATABASE: todos
-  DATABASE_PORT: 3306
-  DATABASE_PASSWORD: password
-  DATABASE_URL: 'mysql://root:password@mysql:3306/todos'
-
 jobs:
   continuos-integration:
     runs-on: ubuntu-latest
@@ -44,6 +37,3 @@ jobs:
 
       - name: Run Tests
         run: npm run test
-        env:
-          DATABASE: supertest
-          DATABASE_URL: 'mysql://root:password@mysql:3306/supertest?schema='
