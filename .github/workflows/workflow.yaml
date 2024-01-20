@@ -40,7 +40,9 @@ jobs:
           npm install -g prisma
 
       - name: Prisma Generate
-        run: npx prisma generate
+        run: npx prisma generate dev
+        env:
+          DATABASE_URL: mysql://root:password@mysql:3306/db
 
       - name: Run Tests
         run: npm run test
