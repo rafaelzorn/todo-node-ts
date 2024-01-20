@@ -37,5 +37,5 @@ jobs:
       - name: Run npm install, and tests
         run: |
           npm install
-          prisma generate
+          npx -v
           npm run test
