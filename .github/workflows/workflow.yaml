@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  DATABASE_URL: 'mysql://root:password@mysql:3306/todos'
+  DATABASE_URL: 'mysql://root:password@localhost:3306/todos'
 
 jobs:
   continuos-integration:
