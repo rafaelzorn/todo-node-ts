@@ -29,13 +29,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Wait for MySQL to be ready
-        run: |
-          until nc -z -v -w30 localhost 3306; do
-            echo 'Waiting for MySQL to be ready...'
-            sleep 1
-          done
-
       - name: Using Node.js
         uses: actions/setup-node@v4
         with:
