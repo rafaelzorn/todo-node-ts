@@ -29,8 +29,3 @@ services:
     environment:
       MYSQL_DATABASE: ${DATABASE}
       MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
-
-networks:
-  default:
-    external:
-      name: network
