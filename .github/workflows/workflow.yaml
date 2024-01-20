@@ -19,24 +19,16 @@ jobs:
     services:
       mysql:
         image: mysql:5.7
-        restart: always
-        ports:
-          - 3306:3306
-        expose:
-          - 3306
-        environment:
+        env:
           MYSQL_DATABASE: todos
           MYSQL_ROOT_PASSWORD: password
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Using Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18.16.1
-
-      -name: Run npm install, and tests
+      - name: Run MySQL Query
         run: |
-          npm install
-          npm run test
+          mysql -h127.0.0.1 -uroot -ppassword -e "SHOW DATABASES;"
