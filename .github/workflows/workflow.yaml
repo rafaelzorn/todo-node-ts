@@ -29,6 +29,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Run MySQL Query
+      - name: Using Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.16.1
+
+      - name: Run npm install, and tests
         run: |
-          mysql -h127.0.0.1 -uroot -ppassword -e "SHOW DATABASES;"
+          npm install
+          npm run test
