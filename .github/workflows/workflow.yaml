@@ -41,7 +41,7 @@ jobs:
 
       - name: Verify Mysql Connection
         env:
-          PORT: ${{ job.services.mysql.ports[3306] }}
+          PORT: ${{ job.services.mysql.ports[3308] }}
         run: |
           while ! mysqladmin ping -h"127.0.0.1" -P"3306" --silent; do
             sleep 1
