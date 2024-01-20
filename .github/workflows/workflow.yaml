@@ -34,8 +34,13 @@ jobs:
         with:
           node-version: 18.16.1
 
-      - name: Run npm install, and tests
+      - name: Install Dependencies
         run: |
           npm install
-          npx -v
-          npm run test
+          npm install -g prisma
+
+      - name: Prisma Generate
+        run: npx prisma generate
+
+      - name: Run npm tests
+        run: npm run test
