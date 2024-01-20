@@ -24,6 +24,8 @@ jobs:
           MYSQL_ROOT_PASSWORD: password
         ports:
           - 3306:3306
+        expose:
+          - 3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
@@ -38,13 +40,6 @@ jobs:
         run: |
           npm install
           npm install -g prisma
-
-      - name: Wait for MySQL to be ready
-        run: |
-          until nc -z -v -w30 mysql 3306; do
-            echo 'Waiting for MySQL to be ready...'
-            sleep 1
-          done
 
       - name: Prisma Generate
         run: npx prisma generate
