@@ -16,20 +16,27 @@ jobs:
   continuos-integration:
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql:5.7
+        restart: always
+        ports:
+          - 3306:3306
+        expose:
+          - 3306
+        environment:
+          MYSQL_DATABASE: todos
+          MYSQL_ROOT_PASSWORD: password
+
     steps:
       - uses: actions/checkout@v4
 
-      - name: Creating network
-        run: docker network create "network"
+      - name: Using Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.16.1
 
-      - name: Build docker-composer
-        run: docker-compose up -d
-
-      - name: Wait for node_modules
+      -name: Run npm install, and tests
         run: |
-          until docker exec api test -d "node_modules" && [ -n "$(docker exec api ls -A node_modules)" ]; do
-            sleep 10
-          done
-
-      - name: Run Tests
-        run: docker exec api npm test
+          npm install
+          npm run test
