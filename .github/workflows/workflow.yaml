@@ -43,3 +43,7 @@ jobs:
 
       - name: Run Tests
         run: npm run test
+        env:
+          DATABASE: supertest
+          DATABASE_HOST: localhost
+          DATABASE_URL: 'mysql://root:password@localhost:3306/supertest?schema='
