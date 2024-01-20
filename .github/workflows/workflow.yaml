@@ -39,13 +39,12 @@ jobs:
           npm install
           npm install -g prisma
 
-      - name: Debug Information
+      - name: Wait for MySQL to be ready
         run: |
-          echo "Checking MySQL Connection..."
-          nc -z -v -w5 mysql 3306 || echo "MySQL Connection Failed"
-          echo "Environment Variables:"
-          env
-          echo "End of Debug Information"
+          until nc -z -v -w30 mysql 3306; do
+            echo 'Waiting for MySQL to be ready...'
+            sleep 1
+          done
 
       - name: Prisma Generate
         run: npx prisma generate
